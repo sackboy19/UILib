@@ -28,17 +28,17 @@ struct RectFragmentData {
   float4 border_end_color;
 };
 
-// float distance_from_rect(vector_float2 pixel_pos, vector_float2 rect_center, vector_float2 rect_corner, float corner_radius) {
-//   vector_float2 p = pixel_pos - rect_center;
-//   vector_float2 q = abs(p) - rect_corner + corner_radius;
-//   return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - corner_radius;
-// }
+float distance_from_rect(vector_float2 pixel_pos, vector_float2 rect_center, vector_float2 rect_corner, float corner_radius) {
+  vector_float2 p = pixel_pos - rect_center;
+  vector_float2 q = abs(p) - rect_corner + corner_radius;
+  return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - corner_radius;
+}
 
-// float4 derive_color(float2 pixel_pos, float2 start, float2 end, float4 start_color, float4 end_color) {
-//   float2 adjusted_end = end - start;
-//   float h = dot(pixel_pos - start, adjusted_end) / dot(adjusted_end, adjusted_end);
-//   return mix(start_color, end_color, h);
-// }
+float4 derive_color(float2 pixel_pos, float2 start, float2 end, float4 start_color, float4 end_color) {
+  float2 adjusted_end = end - start;
+  float h = dot(pixel_pos - start, adjusted_end) / dot(adjusted_end, adjusted_end);
+  return mix(start_color, end_color, h);
+}
 
 vertex RectFragmentData
 rect_vertex_shader(
@@ -120,5 +120,5 @@ fragment float4 rect_fragment_shader(
   //   color.a *= 1.0 - smoothstep(-0.75, -0.1, shape_distance);
   // }
   // return color;
-  return float4(1, 1, 1, 1);
+  return float4(1, 1, 1, 0.2);
 }

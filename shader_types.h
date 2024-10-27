@@ -19,10 +19,6 @@ Header containing types and enum constants shared between Metal shaders and C/Ob
 //  shader. This header is shared between the .metal shader and C code, to guarantee that
 //  the layout of the vertex array in the C code matches the layout that the .metal
 //  vertex shader expects.
-struct Vertex {
-	vector_float2 position;
-	vector_float4 color;
-};
 
 struct PerRectUniforms {
   vector_float2 origin;               // Position of the rectangle in pixel space

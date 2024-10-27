@@ -2,16 +2,16 @@
 triple:          'arm64-apple-darwin'
 binary-path:     'build/UILib.app/Contents/MacOS/UILib'
 relocations:
-  - { offset: 0x27, size: 0x8, addend: 0x0, symName: '-[ViewController viewDidLoad]', symObjAddr: 0x0, symBinAddr: 0x100001568, symSize: 0xA1C }
-  - { offset: 0x34, size: 0x8, addend: 0x0, symName: '-[ViewController viewDidLoad]', symObjAddr: 0x0, symBinAddr: 0x100001568, symSize: 0xA1C }
-  - { offset: 0x59, size: 0x8, addend: 0x0, symName: '__ZZ29-[ViewController viewDidLoad]E12rectVertices', symObjAddr: 0x2640, symBinAddr: 0x100002AA0, symSize: 0x0 }
-  - { offset: 0x4636, size: 0x8, addend: 0x0, symName: '-[ViewController mtkView:drawableSizeWillChange:]', symObjAddr: 0xA1C, symBinAddr: 0x100001F84, symSize: 0xA8 }
-  - { offset: 0x4684, size: 0x8, addend: 0x0, symName: '-[ViewController drawInMTKView:]', symObjAddr: 0xAC4, symBinAddr: 0x10000202C, symSize: 0x670 }
-  - { offset: 0x46F6, size: 0x8, addend: 0x0, symName: __ZL17MTLClearColorMakedddd, symObjAddr: 0x1134, symBinAddr: 0x10000269C, symSize: 0x4C }
-  - { offset: 0x4760, size: 0x8, addend: 0x0, symName: '-[ViewController setRepresentedObject:]', symObjAddr: 0x1180, symBinAddr: 0x1000026E8, symSize: 0x90 }
-  - { offset: 0x47A0, size: 0x8, addend: 0x0, symName: '-[ViewController .cxx_destruct]', symObjAddr: 0x1210, symBinAddr: 0x100002778, symSize: 0xD0 }
-  - { offset: 0x47D2, size: 0x8, addend: 0x0, symName: '-[AppDelegate applicationDidFinishLaunching:]', symObjAddr: 0x12E0, symBinAddr: 0x100002848, symSize: 0x4C }
-  - { offset: 0x4812, size: 0x8, addend: 0x0, symName: '-[AppDelegate applicationWillTerminate:]', symObjAddr: 0x132C, symBinAddr: 0x100002894, symSize: 0x4C }
-  - { offset: 0x4852, size: 0x8, addend: 0x0, symName: '-[AppDelegate applicationSupportsSecureRestorableState:]', symObjAddr: 0x1378, symBinAddr: 0x1000028E0, symSize: 0x54 }
-  - { offset: 0x4896, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x13CC, symBinAddr: 0x100002934, symSize: 0x30 }
+  - { offset: 0x27, size: 0x8, addend: 0x0, symName: '-[ViewController viewDidLoad]', symObjAddr: 0x0, symBinAddr: 0x100000EEC, symSize: 0xF18 }
+  - { offset: 0x34, size: 0x8, addend: 0x0, symName: '-[ViewController viewDidLoad]', symObjAddr: 0x0, symBinAddr: 0x100000EEC, symSize: 0xF18 }
+  - { offset: 0x59, size: 0x8, addend: 0x0, symName: '__ZZ29-[ViewController viewDidLoad]E12rectVertices', symObjAddr: 0x2D50, symBinAddr: 0x100002940, symSize: 0x0 }
+  - { offset: 0x4614, size: 0x8, addend: 0x0, symName: '-[ViewController mtkView:drawableSizeWillChange:]', symObjAddr: 0xF18, symBinAddr: 0x100001E04, symSize: 0xA8 }
+  - { offset: 0x4662, size: 0x8, addend: 0x0, symName: '-[ViewController drawInMTKView:]', symObjAddr: 0xFC0, symBinAddr: 0x100001EAC, symSize: 0x684 }
+  - { offset: 0x46D4, size: 0x8, addend: 0x0, symName: __ZL17MTLClearColorMakedddd, symObjAddr: 0x1644, symBinAddr: 0x100002530, symSize: 0x4C }
+  - { offset: 0x473E, size: 0x8, addend: 0x0, symName: '-[ViewController setRepresentedObject:]', symObjAddr: 0x1690, symBinAddr: 0x10000257C, symSize: 0x90 }
+  - { offset: 0x477E, size: 0x8, addend: 0x0, symName: '-[ViewController .cxx_destruct]', symObjAddr: 0x1720, symBinAddr: 0x10000260C, symSize: 0xD0 }
+  - { offset: 0x47B0, size: 0x8, addend: 0x0, symName: '-[AppDelegate applicationDidFinishLaunching:]', symObjAddr: 0x17F0, symBinAddr: 0x1000026DC, symSize: 0x4C }
+  - { offset: 0x47F0, size: 0x8, addend: 0x0, symName: '-[AppDelegate applicationWillTerminate:]', symObjAddr: 0x183C, symBinAddr: 0x100002728, symSize: 0x4C }
+  - { offset: 0x4830, size: 0x8, addend: 0x0, symName: '-[AppDelegate applicationSupportsSecureRestorableState:]', symObjAddr: 0x1888, symBinAddr: 0x100002774, symSize: 0x54 }
+  - { offset: 0x4874, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x18DC, symBinAddr: 0x1000027C8, symSize: 0x30 }
 ...

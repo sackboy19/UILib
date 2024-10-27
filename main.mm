@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#include <Metal/Metal.h>
 #import <Cocoa/Cocoa.h>
 #import <MetalKit/MetalKit.h>
 #import "Foundation/Foundation.h"
@@ -45,6 +46,12 @@
 
 	// Set the view to use the default device
 	view = (MTKView *)self.view;
+	// [[view layer] setOpaque: NO];
+
+	view.colorPixelFormat = MTLPixelFormatRGBA16Float;
+	// view.colorPixelFormat = MTLPixelFormatBGRA8Unorm_sRGB;
+	// view.colorspace = view.window.colorSpace.CGColorSpace;
+	view.colorspace = CGColorSpaceCreateWithName(kCGColorSpaceSRGB);
 
 	device = MTLCreateSystemDefaultDevice();
 	view.device = device;
@@ -71,7 +78,14 @@
 	pipelineStateDescriptor.label = @"Simple Pipeline";
 	pipelineStateDescriptor.vertexFunction = vertexFunction;
 	pipelineStateDescriptor.fragmentFunction = fragmentFunction;
-	pipelineStateDescriptor.colorAttachments[0].pixelFormat = view.colorPixelFormat;
+	pipelineStateDescriptor.colorAttachments[0].pixelFormat                 = view.colorPixelFormat;
+	pipelineStateDescriptor.colorAttachments[0].blendingEnabled             = YES;
+	pipelineStateDescriptor.colorAttachments[0].sourceRGBBlendFactor        = MTLBlendFactorOne;
+	pipelineStateDescriptor.colorAttachments[0].sourceAlphaBlendFactor      = MTLBlendFactorOne;
+	pipelineStateDescriptor.colorAttachments[0].destinationRGBBlendFactor   = MTLBlendFactorOneMinusSourceAlpha;
+	pipelineStateDescriptor.colorAttachments[0].destinationAlphaBlendFactor = MTLBlendFactorOneMinusSourceAlpha;
+	pipelineStateDescriptor.colorAttachments[0].rgbBlendOperation           = MTLBlendOperationAdd;
+	pipelineStateDescriptor.colorAttachments[0].alphaBlendOperation         = MTLBlendOperationAdd;
 
 	pipeline_state = [device newRenderPipelineStateWithDescriptor:pipelineStateDescriptor
 																													 error:&error];
@@ -85,11 +99,11 @@
 	// Create the command queue
 	command_queue = [device newCommandQueue];
 
-	static const Vertex rectVertices[] = {
-    { { -0.5, -0.5 }, { 1, 1, 1, 1 } }, // bottom-left
-    { {  0.5, -0.5 }, { 1, 1, 1, 1 } }, // bottom-right
-    { { -0.5,  0.5 }, { 1, 1, 1, 1 } }, // top-left
-    { {  0.5,  0.5 }, { 1, 1, 1, 1 } }, // top-right
+	static const vector_float2 rectVertices[] = {
+    { -0.5, -0.5 }, // bottom-left
+    {  0.5, -0.5 }, // bottom-right
+    { -0.5,  0.5 }, // top-left
+    {  0.5,  0.5 }, // top-right
 	};
 
 	// Create the vertex buffer
@@ -102,21 +116,21 @@
 	for (int i = 0; i < rectCount; ++i) {
 		rectUniforms[i] = (PerRectUniforms){
 	    .origin = {0.0, 0.0},
-	    .size = {100.0, 150.0},
-	    .border_top = 5.0,
-	    .border_right = 5.0,
-	    .border_bottom = 5.0,
-	    .border_left = 5.0,
-	    .corner_radius_top = 10.0,
-	    .corner_radius_bottom = 10.0,
+	    .size = {700.0, 550.0},
+	    .border_top = 1.0,
+	    .border_right = 1.0,
+	    .border_bottom = 1.0,
+	    .border_left = 1.0,
+	    .corner_radius_top = 20.0,
+	    .corner_radius_bottom = 20.0,
 	    .background_start = {0.0, 0.0},
 	    .background_end = {1.0, 1.0},
-	    .background_start_color = {1.0, 0.0, 0.0, 1.0}, // Red
-	    .background_end_color = {0.0, 0.0, 1.0, 1.0},   // Blue
+	    .background_start_color = {1.0, 0.0, 0.0, 0.0}, // Red
+	    .background_end_color = {0.0, 0.0, 1.0, 0.5},   // Blue
 	    .border_start = {0.0, 0.0},
 	    .border_end = {1.0, 0.0},
-	    .border_start_color = {1.0, 1.0, 1.0, 1.0},     // White
-	    .border_end_color = {0.0, 1.0, 0.0, 1.0}        // Green
+	    .border_start_color = {1.0, 1.0, 1.0, 0.5},     // White
+	    .border_end_color = {1.0, 1.0, 1.0, 0.5}        // Green
 		};
 	}
 
@@ -168,7 +182,7 @@
 			[renderEncoder setViewport:(MTLViewport){0.0, 0.0, (double)(viewport_size.x), (double)viewport_size.y, 0.0, 1.0 }];
 			[renderEncoder setRenderPipelineState:pipeline_state];
 
-			uniforms.viewport_size = viewport_size;
+			uniforms.viewport_size = viewport_size * 0.5f;
 			uniforms.max_z_index = 1.0f; // Set this to your desired max Z index
 
 			// Update the buffer to reflect the changes
